@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import low from 'lowdb';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import FileSync from 'lowdb/adapters/FileSync';
 import { TodoItem, API } from '../common/types';
 
