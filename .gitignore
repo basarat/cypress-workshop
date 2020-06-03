@@ -10,3 +10,7 @@ db.json
 # IDE
 .alm
 .vscode
+
+# Coverage 
+.nyc_output
+coverage
