@@ -6,7 +6,7 @@ import FileSync from 'lowdb/adapters/FileSync';
 import { TodoItem, API } from '../common/types';
 
 /** 
- * Setup db 
+ * Setup db
  */
 type DBSchema = {
   items: TodoItem[]
