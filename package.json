@@ -13,7 +13,7 @@
     "build:app": "react-scripts build",
     "build:cypress": "wait-on http://localhost:8080 && cypress run",
     "build": "npm run build:check && npm run build:server && npm run build:app && npm run build:cypress",
-    "start:server": "ts-node-dev src/server/server.ts",
+    "start:server": "ts-node src/server/server.ts --project tsconfig.server.json",
     "start:app": "react-scripts start",
     "start:cypress": "cypress open",
     "start": "concurrently -k \"npm run start:server\" \"npm run start:app\" \"npm run start:cypress\""
@@ -39,7 +39,7 @@
     "react-dom": "16.13.1",
     "react-scripts": "3.4.1",
     "takeme": "0.11.3",
-    "ts-node-dev": "1.0.0-pre.44",
+    "ts-node": "8.10.2",
     "typescript": "3.9.3",
     "typestyle": "2.1.0",
     "uuid": "8.1.0",
