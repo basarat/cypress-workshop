@@ -1,5 +1,5 @@
 describe('Example', () => {
   it('Should work', () => {
-    cy.visit('http://www.google.com');
+    cy.visit('http://localhost:8080');
   });
 });
