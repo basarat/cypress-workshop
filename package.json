@@ -16,7 +16,7 @@
     "start:server": "ts-node-dev src/server/server.ts",
     "start:webpack": "webpack-dev-server -d --content-base ./public",
     "start:cypress": "cypress open",
-    "start": "concurrently \"npm run start:server\" \"npm run start:webpack\" \"npm run start:cypress\""
+    "start": "concurrently -k \"npm run start:server\" \"npm run start:webpack\" \"npm run start:cypress\""
   },
   "dependencies": {
     "@types/express": "4.17.6",
