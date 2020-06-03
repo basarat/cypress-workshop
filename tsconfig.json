@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "noEmit": true,
     "sourceMap": true,
     "module": "commonjs",
     "esModuleInterop": true,
