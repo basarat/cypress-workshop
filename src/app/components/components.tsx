@@ -71,7 +71,7 @@ export const Main: React.SFC<{}> = observer(() => {
                   data-test={`item-destroy-${i}`}
                   onClick={() => appState.destroy(item)} />
               </div>
-              {!!appState.editingTodoMessage &&
+              {appState.editingId &&
                 <input
                   data-test={`item-edit-${i}`}
                   className={classNames.edit}

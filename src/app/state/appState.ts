@@ -84,7 +84,7 @@ class AppState {
   @action
   setEditing(item: TodoItem) {
     this.editingId = item.id;
-    this.editingTodoMessage = new FieldState(item.message);
+    this.editingTodoMessage.onChange(item.message);
   }
 
   @action
