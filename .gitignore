@@ -15,5 +15,6 @@ db.json
 .nyc_output
 coverage
 
-# Cypress Videos
+# Cypress Videos Screenshots
 cypress/videos
+cypress/screenshots
