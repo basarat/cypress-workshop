@@ -29,7 +29,7 @@ button {
 
 body {
 	font-size: 14px;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: Arial;
 	line-height: 1.4em;
 	background: #f5f5f5;
 	color: #4d4d4d;
