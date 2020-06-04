@@ -11,7 +11,7 @@
     "build:check": "tsc -p .",
     "build:server": "tsc -p ./tsconfig.server.json",
     "build:app": "react-scripts build",
-    "build:cypress": "wait-on http://localhost:8080 && cypress run",
+    "build:cypress": "wait-on http://localhost:3000 && cypress run",
     "build": "npm run build:check && npm run build:server && npm run build:app && npm run build:cypress",
     "start:server": "ts-node --project tsconfig.server.json src/server/server.ts",
     "start:app": "react-scripts start",

@@ -13,8 +13,8 @@ npm i
 Open up code: 
 * code .
 
-Open localhost:8080
-* open http://localhost:8080
+Open localhost:3000
+* open http://localhost:3000
 
 # Script 
 
@@ -66,10 +66,10 @@ Notice the autocomplete, and once again touch on our flake resistance notice tha
   * Add, remove, mark as complete - filter. Preserved on reload.
 
 ## Test app 
-Lets write our first test to see it in practice. We already have the application running on 8080 and we can test that. 
+Lets write our first test to see it in practice. We already have the application running on 3000 and we can test that. 
 
 ```ts
-  cy.visit('http://localhost:8080');
+  cy.visit('http://localhost:3000');
 ```
 
 * At this point writing clear dependable tests is problematic as the initial state of the applicaiton will vary depending upon the backend state.

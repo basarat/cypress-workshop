@@ -6,7 +6,7 @@
 ## Dev
 * `npm start` 
 
-And visit `http://localhost:8080`
+And visit `http://localhost:3000`
 
 # Depdendencies
 * Dev Frontend:

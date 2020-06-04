@@ -26,7 +26,7 @@ export const selectors = {
 };
 
 export const visit = () => {
-  cy.visit('http://localhost:8080');
+  cy.visit('http://localhost:3000');
 };
 
 export const addTodo = (text: string) => {
