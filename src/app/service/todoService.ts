@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TodoItem, CreateRequest, createEndpoint, CreateResponse, GetAllResponse, getAllEndpoint, SetAllRequest, setAllEndpoint } from '../../common/types';
+import { CreateRequest, createEndpoint, CreateResponse, GetAllResponse, getAllEndpoint, SetAllRequest, setAllEndpoint } from '../../common/types';
 
 export const apiRoot = 'http://localhost:8000/api';
 

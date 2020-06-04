@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { FieldState } from 'formstate';
 import { classNames } from '../todomvc/css';
 import { appState } from '../state/appState';
 import { routerState, link, routes } from '../state/routerState';
@@ -31,7 +30,7 @@ export const Header: React.SFC<{
       value={fieldState.value}
       onChange={(e) => fieldState.onChange(e.target.value)}
       onKeyDown={e => {
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
           appState.addCurrentItem();
         }
       }}
@@ -51,7 +50,7 @@ export const Main: React.SFC<{}> = observer(() => {
         {appState.visibleList.map((item, i) => {
           return (
             <li key={item.id} className={
-              item.id == appState.editingId
+              item.id === appState.editingId
                 ? classNames.editing
                 : item.completed
                   ? classNames.completed : ''
@@ -78,10 +77,10 @@ export const Main: React.SFC<{}> = observer(() => {
                   value={appState.editingTodoMessage.value}
                   onChange={(e) => appState.editingTodoMessage.onChange(e.target.value)}
                   onKeyDown={e => {
-                    if (e.keyCode == 13) {
+                    if (e.keyCode === 13) {
                       appState.submitEditing();
                     }
-                    else if (e.keyCode == 27) {
+                    else if (e.keyCode === 27) {
                       appState.cancelEditing();
                     }
                   }}
@@ -100,12 +99,12 @@ export const Main: React.SFC<{}> = observer(() => {
 export const Footer: React.SFC<{}> = observer(() => {
   return (
     <footer className={classNames.footer}>
-      <span className={classNames.todoCount}><strong>{appState.activeCount}</strong> {appState.activeCount == 1 ? 'item' : 'items'} left</span>
+      <span className={classNames.todoCount}><strong>{appState.activeCount}</strong> {appState.activeCount === 1 ? 'item' : 'items'} left</span>
       <ul className={classNames.filters}>
         <li>
-          <a data-test="all" className={routerState.route == 'all' ? classNames.selected : ''} href={link(routes.all)}>All</a>
-          <a data-test="active" className={routerState.route == 'active' ? classNames.selected : ''} href={link(routes.active)}>Active</a>
-          <a data-test="completed" className={routerState.route == 'completed' ? classNames.selected : ''} href={link(routes.completed)}>Completed</a>
+          <a data-test="all" className={routerState.route === 'all' ? classNames.selected : ''} href={link(routes.all)}>All</a>
+          <a data-test="active" className={routerState.route === 'active' ? classNames.selected : ''} href={link(routes.active)}>Active</a>
+          <a data-test="completed" className={routerState.route === 'completed' ? classNames.selected : ''} href={link(routes.completed)}>Completed</a>
         </li>
       </ul>
       {

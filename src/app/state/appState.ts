@@ -23,7 +23,7 @@ class AppState {
 
   @computed
   get activeCount() {
-    return this.items.filter(i => i.completed == false).length;
+    return this.items.filter(i => i.completed === false).length;
   }
 
   @computed
@@ -33,11 +33,11 @@ class AppState {
 
   @computed
   get visibleList() {
-    return routerState.route == 'all'
+    return routerState.route === 'all'
       ? this.items
-      : routerState.route == 'active'
-        ? this.items.filter(i => i.completed == false)
-        : this.items.filter(i => i.completed == true)
+      : routerState.route === 'active'
+        ? this.items.filter(i => i.completed === false)
+        : this.items.filter(i => i.completed === true)
   }
 
   @action
@@ -72,7 +72,7 @@ class AppState {
 
   @action
   clearCompleted(): void {
-    this.items = this.items.filter(i => i.completed == false);
+    this.items = this.items.filter(i => i.completed === false);
     setAll({ todos: this.items });
   }
 
