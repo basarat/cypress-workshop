@@ -1,3 +1,4 @@
+import 'mobx-react-lite/batchingForReactDom';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as typestyle from 'typestyle';
