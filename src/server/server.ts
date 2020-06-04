@@ -56,3 +56,9 @@ const port = 8000;
 app.listen(port, '0.0.0.0', () => {
   console.log('Server listening on port:', port);
 });
+
+/** Graceful exit */
+process.on('SIGINT', () => {
+  console.log('Server gracefully shutting down.');
+  process.exit(0);
+});
