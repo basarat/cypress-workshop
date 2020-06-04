@@ -4,6 +4,7 @@
     "src/app"
   ],
   "compilerOptions": {
-    "module": "CommonJS"
+    "module": "CommonJS",
+    "noEmit": false
   }
 }

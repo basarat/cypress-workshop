@@ -52,4 +52,7 @@ api.put(setAllEndpoint, (req, res: express.Response) => {
 app.use('/api', api);
 
 /** Start */
-app.listen(8000, '0.0.0.0');
+const port = 8000;
+app.listen(port, '0.0.0.0', () => {
+  console.log('Server listening on port:', port);
+});

@@ -15,7 +15,7 @@
     "build:check": "tsc -p .",
     "build:server": "tsc -p ./tsconfig.server.json",
     "build:app": "react-scripts build",
-    "build:cypress:start": "concurrently -k \"npm run start:server\" \"serve build -l 3000\"",
+    "build:cypress:start": "concurrently -k \"node lib/server/server.js\" \"serve build -l 3000\"",
     "build:cypress:test": "cypress run",
     "build:cypress": "start-server-and-test build:cypress:start http://localhost:3000 build:cypress:test",
     "build": "npm run build:check && npm run build:server && npm run build:app && npm run build:cypress"
