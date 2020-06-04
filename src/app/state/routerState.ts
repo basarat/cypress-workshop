@@ -1,4 +1,6 @@
 import { observable } from 'mobx';
+import { Router } from 'takeme';
+export { navigate, link } from 'takeme';
 
 export const routes = {
   all: '/',
@@ -17,10 +19,6 @@ export class RouterState {
 }
 
 export const routerState = new RouterState();
-
-import { Router } from 'takeme';
-export { navigate, link } from 'takeme';
-
 new Router([
   {
     $: routes.active,

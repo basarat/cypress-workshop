@@ -1,20 +1,20 @@
 import axios from 'axios';
-import { TodoItem, API } from '../../common/types';
+import { TodoItem, CreateRequest, createEndpoint, CreateResponse, GetAllResponse, getAllEndpoint, SetAllRequest, setAllEndpoint } from '../../common/types';
 
-export const apiRoot = 'http://localhost:3000/api';
+export const apiRoot = 'http://localhost:8000/api';
 
-export const create = (body: API.create.Request) => {
+export const create = (body: CreateRequest) => {
   return axios
-    .post<API.create.Response>(apiRoot + API.create.endpoint, body)
+    .post<CreateResponse>(apiRoot + createEndpoint, body)
     .then(res => res.data);
 }
 
 export const getAll = () => {
-  return axios.get<API.getAll.Response>(apiRoot + API.getAll.endpoint)
+  return axios.get<GetAllResponse>(apiRoot + getAllEndpoint)
     .then(res => res.data);
 }
 
-export const setAll = (body: API.setAll.Request) => {
-  return axios.put<{}>(apiRoot + API.setAll.endpoint, body)
+export const setAll = (body: SetAllRequest) => {
+  return axios.put<{}>(apiRoot + setAllEndpoint, body)
     .then(res => res.data);
 }

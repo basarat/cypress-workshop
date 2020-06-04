@@ -81,13 +81,13 @@ Notice that we start with some todos in there. Its not ideal, instead we should 
 
 ```ts
   cy.server()
-    .route('GET', 'http://localhost:3000/api/get-all', { todos: [] });
+    .route('GET', 'http://localhost:8000/api/get-all', { todos: [] });
   // continue with cy.visit 
 ```
 We can move it to before each
 ```ts
 beforeEach(() => {
-  cy.server().route('GET', 'http://localhost:3000/api/get-all', { todos: [] });
+  cy.server().route('GET', 'http://localhost:8000/api/get-all', { todos: [] });
 });
 ```
 
@@ -96,7 +96,7 @@ beforeEach(() => {
 If we play around with the ui we see there are calls to `POST``/add` and `PUT``/set-all`. We could start mocking all of these all well and at that point you will be re-creating your backend. So think about it for a second and you will realize that the whole objective here is to ensure that the application starts in a known good state. So what you really want is `init` the server instead of starting to mock these out. 
 
 ```ts
-cy.request('PUT', 'http://localhost:3000/api/set-all', { todos: [] });
+cy.request('PUT', 'http://localhost:8000/api/set-all', { todos: [] });
 ```
 
 These are true E2E tests. 

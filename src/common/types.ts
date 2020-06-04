@@ -4,29 +4,20 @@ export type TodoItem = {
   message: string,
 }
 
+export const createEndpoint = '/add';
+export type CreateRequest = {
+  message: string
+}
+export type CreateResponse = {
+  id: string
+}
 
-export namespace API {
-  export namespace create {
-    export const endpoint = '/add';
-    export type Request = {
-      message: string
-    }
-    export type Response = {
-      id: string
-    }
-  }
-  
-  export namespace getAll {
-    export const endpoint = '/get-all';
-    export type Response = {
-      todos: TodoItem[]
-    }
-  }
+export const getAllEndpoint = '/get-all';
+export type GetAllResponse = {
+  todos: TodoItem[]
+}
 
-  export namespace setAll {
-    export const endpoint = '/set-all';
-    export type Request = {
-      todos: TodoItem[]
-    }
-  }
+export const setAllEndpoint = '/set-all';
+export type SetAllRequest = {
+  todos: TodoItem[]
 }

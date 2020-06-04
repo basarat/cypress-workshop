@@ -3,7 +3,9 @@ import cors from 'cors';
 import low from 'lowdb';
 import { v4 as uuid } from 'uuid';
 import FileSync from 'lowdb/adapters/FileSync';
-import { TodoItem, API } from '../common/types';
+import {
+  TodoItem, getAllEndpoint, createEndpoint, setAllEndpoint, CreateRequest, CreateResponse, SetAllRequest
+} from '../common/types';
 
 /** 
  * Setup db
@@ -25,12 +27,12 @@ const app = express();
 const api = express.Router();
 
 api.use(cors(), express.json());
-api.get(API.getAll.endpoint, (_, res) => {
+api.get(getAllEndpoint, (_, res) => {
   res.send({ todos: db.get('items') });
 });
-api.post(API.create.endpoint, (req, res: express.Response) => {
+api.post(createEndpoint, (req, res: express.Response) => {
   const id = uuid();
-  const request: API.create.Request = req.body;
+  const request: CreateRequest = req.body;
   db.get('items')
     .push({
       id: id,
@@ -40,8 +42,8 @@ api.post(API.create.endpoint, (req, res: express.Response) => {
     .write();
   res.send({ id });
 });
-api.put(API.setAll.endpoint, (req, res: express.Response) => {
-  const request: API.setAll.Request = req.body;
+api.put(setAllEndpoint, (req, res: express.Response) => {
+  const request: SetAllRequest = req.body;
   db.set('items', request.todos)
     .write();
   res.send({});
@@ -50,4 +52,4 @@ api.put(API.setAll.endpoint, (req, res: express.Response) => {
 app.use('/api', api);
 
 /** Start */
-app.listen(3000, '0.0.0.0');
+app.listen(8000, '0.0.0.0');
