@@ -8,15 +8,16 @@
   },
   "scripts": {
     "clean": "rm -rf ./node_modules package-lock.json && npm install",
-    "build:check": "tsc -p .",
-    "build:server": "tsc -p ./tsconfig.server.json",
-    "build:app": "react-scripts build",
-    "build:cypress": "wait-on http://localhost:3000 && cypress run",
-    "build": "npm run build:check && npm run build:server && npm run build:app && npm run build:cypress",
     "start:server": "ts-node --project tsconfig.server.json src/server/server.ts",
     "start:app": "react-scripts start",
     "start:cypress": "cypress open",
-    "start": "concurrently -k \"npm run start:server\" \"npm run start:app\" \"npm run start:cypress\""
+    "start": "concurrently -k \"npm run start:server\" \"npm run start:app\" \"npm run start:cypress\"",
+    "build:check": "tsc -p .",
+    "build:server": "tsc -p ./tsconfig.server.json",
+    "build:app": "react-scripts build",
+    "build:cypress:run": "wait-on http://localhost:3000 && cypress run",
+    "build:cypress": "concurrently -k \"serve build -l 3000\" \"npm run start:server\" \"npm run build:cypress:run\"",
+    "build": "npm run build:check && npm run build:server && npm run build:app && npm run build:cypress"
   },
   "dependencies": {
     "@types/cors": "2.8.6",
@@ -38,6 +39,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-scripts": "3.4.1",
+    "serve": "11.3.1",
     "takeme": "0.11.3",
     "ts-node": "8.10.2",
     "typescript": "3.9.3",
