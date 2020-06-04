@@ -13,7 +13,7 @@
     "build:app": "react-scripts build",
     "build:cypress": "wait-on http://localhost:8080 && cypress run",
     "build": "npm run build:check && npm run build:server && npm run build:app && npm run build:cypress",
-    "start:server": "ts-node src/server/server.ts --project tsconfig.server.json",
+    "start:server": "ts-node --project tsconfig.server.json src/server/server.ts",
     "start:app": "react-scripts start",
     "start:cypress": "cypress open",
     "start": "concurrently -k \"npm run start:server\" \"npm run start:app\" \"npm run start:cypress\""
