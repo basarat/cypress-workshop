@@ -40,7 +40,8 @@ api.post(createEndpoint, (req, res: express.Response) => {
       message: request.message
     })
     .write();
-  res.send({ id });
+  const createResponse: CreateResponse = { id };
+  res.send(createResponse);
 });
 api.put(setAllEndpoint, (req, res: express.Response) => {
   const request: SetAllRequest = req.body;
