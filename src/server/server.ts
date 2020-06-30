@@ -20,10 +20,14 @@ const adapter = new FileSync<DBSchema>('db.json', {
 });
 const db = low(adapter);
 
+/**  
+ * Express app
+ */
+const app = express();
+
 /** 
  * API server 
  */
-const app = express();
 const api = express.Router();
 
 api.use(cors(), express.json());
@@ -52,13 +56,17 @@ api.put(setAllEndpoint, (req, res: express.Response) => {
 
 app.use('/api', api);
 
-/** Start */
+/** 
+ * Start
+ **/
 const port = 8000;
 app.listen(port, '0.0.0.0', () => {
   console.log('Server listening on port:', port);
 });
 
-/** Graceful exit */
+/** 
+ * Graceful exit
+ **/
 process.on('SIGINT', () => {
   console.log('Server gracefully shutting down.');
   process.exit(0);
