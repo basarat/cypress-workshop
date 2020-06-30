@@ -8,7 +8,7 @@
   },
   "scripts": {
     "clean": "rm -rf ./node_modules package-lock.json && npm install",
-    "start:server": "ts-node --project tsconfig.server.json src/server/server.ts",
+    "start:server": "ts-node-dev --project tsconfig.server.json src/server/server.ts",
     "start:app": "react-scripts start",
     "start:cypress": "cypress open",
     "start": "concurrently npm:start:server npm:start:app npm:start:cypress",
@@ -43,7 +43,7 @@
     "serve": "11.3.1",
     "start-server-and-test": "1.11.0",
     "takeme": "0.11.3",
-    "ts-node": "8.10.2",
+    "ts-node-dev": "1.0.0-pre.49",
     "typescript": "3.9.3",
     "typestyle": "2.1.0",
     "uuid": "8.1.0"
