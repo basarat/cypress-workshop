@@ -1,8 +1,21 @@
+import 'mobx-react-lite/batchingForReactDom';
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { classNames } from '../todomvc/css';
+import { classNames, loadTodoMVCCSS } from '../todomvc/css';
 import { appState } from '../state/appState';
 import { routerState, link, routes } from '../state/routerState';
+import ReactDOM from 'react-dom';
+import * as typestyle from 'typestyle';
+
+export function renderMain() {
+  loadTodoMVCCSS();
+
+  ReactDOM.render(
+    <App />,
+    document.getElementById("root")
+  );
+  typestyle.forceRenderStyles();
+}
 
 export const App: React.SFC<{}> = observer((props) => {
   return (
