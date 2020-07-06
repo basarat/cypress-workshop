@@ -8,8 +8,8 @@ export const selectors = {
   newTodoInput: `.${classNames.newTodoInput}`,
   toggleAllCheckbox: `.${classNames.toggleAllCheckbox}`,
 
-  mainList: '#main',
-  footer: '#footer',
+  mainList: '.main',
+  footer: '.footer',
 
   itemCheckBoxByIndex: (index: number) => `[data-test=item-toggle-${index}]`,
   itemLabelByIndex: (index: number) => `[data-test=item-label-${index}]`,
