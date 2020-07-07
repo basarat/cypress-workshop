@@ -1,12 +1,12 @@
-# Cypress Course
+# Cypress Workshop
 > Testing how it should be
 
 ## Setup 
 Setup: 
 
 ```bash
-git clone https://github.com/basarat/cypress-course.git
-cd cypress-course
+git clone https://github.com/basarat/cypress-workshop.git
+cd cypress-workshop
 npm i
 ```
 
