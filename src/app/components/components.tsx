@@ -7,9 +7,8 @@ import { routerState, link, routes } from '../state/routerState';
 import ReactDOM from 'react-dom';
 import * as typestyle from 'typestyle';
 
+loadTodoMVCCSS();
 export function renderMain() {
-  loadTodoMVCCSS();
-
   ReactDOM.render(
     <App />,
     document.getElementById("root")
