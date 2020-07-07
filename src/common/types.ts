@@ -4,11 +4,11 @@ export type TodoItem = {
   message: string,
 }
 
-export const createEndpoint = '/add';
-export type CreateRequest = {
+export const addEndpoint = '/add';
+export type AddRequest = {
   message: string
 }
-export type CreateResponse = {
+export type AddResponse = {
   id: string
 }
 
@@ -21,3 +21,5 @@ export const setAllEndpoint = '/set-all';
 export type SetAllRequest = {
   todos: TodoItem[]
 }
+
+export const port = 8000;

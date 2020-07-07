@@ -4,7 +4,7 @@ import low from 'lowdb';
 import { v4 as uuid } from 'uuid';
 import FileSync from 'lowdb/adapters/FileSync';
 import {
-  TodoItem, getAllEndpoint, createEndpoint, setAllEndpoint, CreateRequest, CreateResponse, SetAllRequest
+  TodoItem, getAllEndpoint, addEndpoint, setAllEndpoint, AddRequest, AddResponse, SetAllRequest, port
 } from '../common/types';
 
 /** 
@@ -34,9 +34,9 @@ api.use(cors(), express.json());
 api.get(getAllEndpoint, (_, res) => {
   res.send({ todos: db.get('items') });
 });
-api.post(createEndpoint, (req, res: express.Response) => {
+api.post(addEndpoint, (req, res: express.Response) => {
   const id = uuid();
-  const request: CreateRequest = req.body;
+  const request: AddRequest = req.body;
   db.get('items')
     .push({
       id: id,
@@ -44,7 +44,7 @@ api.post(createEndpoint, (req, res: express.Response) => {
       message: request.message
     })
     .write();
-  const createResponse: CreateResponse = { id };
+  const createResponse: AddResponse = { id };
   res.send(createResponse);
 });
 api.put(setAllEndpoint, (req, res: express.Response) => {
@@ -59,7 +59,6 @@ app.use('/api', api);
 /** 
  * Start
  **/
-const port = 8000;
 app.listen(port, '0.0.0.0', () => {
   console.log('Server listening on port:', port);
 });

@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { CreateRequest, createEndpoint, CreateResponse, GetAllResponse, getAllEndpoint, SetAllRequest, setAllEndpoint } from '../../common/types';
+import { AddRequest, addEndpoint, AddResponse, GetAllResponse, getAllEndpoint, SetAllRequest, setAllEndpoint, port } from '../../common/types';
 
-export const apiRoot = 'http://localhost:8000/api';
+export const apiRoot = `http://localhost:${port}/api`;
 
-export const create = (body: CreateRequest) => {
+export const add = (body: AddRequest) => {
   return axios
-    .post<CreateResponse>(apiRoot + createEndpoint, body)
+    .post<AddResponse>(apiRoot + addEndpoint, body)
     .then(res => res.data);
 }
 
