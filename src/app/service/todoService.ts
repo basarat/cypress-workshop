@@ -1,20 +1,22 @@
 import axios from 'axios';
-import { AddRequest, addEndpoint, AddResponse, GetAllResponse, getAllEndpoint, SetAllRequest, setAllEndpoint, port } from '../../common/types';
+import { AddRequest, addEndpoint, AddResponse, GetAllResponse, getAllEndpoint, SetAllRequest, setAllEndpoint, port, AddMethod, GetAllMethod, SetAllMethod } from '../../common/types';
 
 export const apiRoot = `http://localhost:${port}/api`;
 
 export const add = (body: AddRequest) => {
   return axios
-    .post<AddResponse>(apiRoot + addEndpoint, body)
+  [AddMethod]<AddResponse>(apiRoot + addEndpoint, body)
     .then(res => res.data);
 }
 
 export const getAll = () => {
-  return axios.get<GetAllResponse>(apiRoot + getAllEndpoint)
+  return axios
+  [GetAllMethod]<GetAllResponse>(apiRoot + getAllEndpoint)
     .then(res => res.data);
 }
 
 export const setAll = (body: SetAllRequest) => {
-  return axios.put<{}>(apiRoot + setAllEndpoint, body)
+  return axios
+  [SetAllMethod]<{}>(apiRoot + setAllEndpoint, body)
     .then(res => res.data);
 }

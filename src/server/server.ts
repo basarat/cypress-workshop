@@ -4,7 +4,7 @@ import low from 'lowdb';
 import { v4 as uuid } from 'uuid';
 import FileSync from 'lowdb/adapters/FileSync';
 import {
-  TodoItem, getAllEndpoint, addEndpoint, setAllEndpoint, AddRequest, AddResponse, SetAllRequest, port
+  TodoItem, getAllEndpoint, addEndpoint, setAllEndpoint, AddRequest, AddResponse, SetAllRequest, port, GetAllMethod, AddMethod, SetAllMethod
 } from '../common/types';
 
 /** 
@@ -31,10 +31,10 @@ const app = express();
 const api = express.Router();
 
 api.use(cors(), express.json());
-api.get(getAllEndpoint, (_, res) => {
+api[GetAllMethod](getAllEndpoint, (_, res) => {
   res.send({ todos: db.get('items') });
 });
-api.post(addEndpoint, (req, res: express.Response) => {
+api[AddMethod](addEndpoint, (req, res: express.Response) => {
   const id = uuid();
   const request: AddRequest = req.body;
   db.get('items')
@@ -47,7 +47,7 @@ api.post(addEndpoint, (req, res: express.Response) => {
   const createResponse: AddResponse = { id };
   res.send(createResponse);
 });
-api.put(setAllEndpoint, (req, res: express.Response) => {
+api[SetAllMethod](setAllEndpoint, (req, res: express.Response) => {
   const request: SetAllRequest = req.body;
   db.set('items', request.todos)
     .write();
