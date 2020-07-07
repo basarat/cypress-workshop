@@ -1,7 +1,5 @@
-import * as assert from 'assert';
+export { };
 
-describe('Example', () => {
-  it('Should work', () => {
-    cy.visit('http://localhost:3000');
-  });
+it('Should work', () => {
+  cy.visit('http://localhost:3000');
 });
