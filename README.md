@@ -1,5 +1,5 @@
 # Cypress Workshop
-> Testing how it should be
+> [Subscribe on YouTube](https://www.youtube.com/basaratali) / [Follow on Twitter](https://twitter.com/basarat) 🌹.
 
 ## Setup 
 Setup: 
