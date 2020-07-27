@@ -1,25 +1,24 @@
-import { startServer } from "../../utils/server";
-import * as page from "../../utils/pages/todoPage";
+import { todoPage } from "../../utils/pages/todoPage";
 
 beforeEach(() => {
-  startServer();
-  page.visit();
+  todoPage.clear();
+  todoPage.visit();
 });
 
 describe('Counter', () => {
   it('Is not displayed when there are no items', () => {
-    cy.get(page.selectors.todoCount).should('not.exist');
+    todoPage.todoCount.should('not.exist');
   });
   it('Displays the number of active todos in a pluralized form e.g. "0 items left", "1 item left", "2 items left"', () => {
-    page.addTodo('Hello World');
-    page.addTodo('Again');
+    todoPage.addTodo('Hello World');
+    todoPage.addTodo('Again');
     
-    cy.get(page.selectors.todoCount).should('have.text', '2 items left');
+    todoPage.todoCount.should('have.text', '2 items left');
 
-    cy.get(page.selectors.itemCheckBoxByIndex(0)).click();
-    cy.get(page.selectors.todoCount).should('have.text', '1 item left');
+    todoPage.itemCheckboxByIndex(0).click();
+    todoPage.todoCount.should('have.text', '1 item left');
     
-    cy.get(page.selectors.itemCheckBoxByIndex(1)).click();
-    cy.get(page.selectors.todoCount).should('have.text', '0 items left');
+    todoPage.itemCheckboxByIndex(1).click();
+    todoPage.todoCount.should('have.text', '0 items left');
   });
 });

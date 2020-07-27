@@ -1,14 +1,13 @@
-import { startServer } from "../../utils/server";
-import * as page from "../../utils/pages/todoPage";
+import { todoPage } from "../../utils/pages/todoPage";
 
 beforeEach(() => {
-  startServer();
-  page.visit();
+  todoPage.clear();
+  todoPage.visit();
 });
 
 describe('No todos', () => {
   it('The main list and footer should be hidden', () => {
-    cy.get(page.selectors.mainList).should('not.be.visible');
-    cy.get(page.selectors.footer).should('not.be.visible');
+    todoPage.main.should('not.be.visible');
+    todoPage.footer.should('not.be.visible');
   });
 });

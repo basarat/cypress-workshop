@@ -1,45 +1,89 @@
-export const classNames = {
-  newTodoInput: 'new-todo',
-  toggleAllCheckbox: 'toggle-all',
-  selectedFilter: 'selected',
-};
+class TodoPage {
+  clear() {
+    cy.request('PUT', 'http://localhost:8000/api/set-all', { todos: [] });
+  }
 
-export const selectors = {
-  newTodoInput: `.${classNames.newTodoInput}`,
-  toggleAllCheckbox: `.${classNames.toggleAllCheckbox}`,
+  visit() {
+    cy.visit('http://localhost:3000');
+  }
 
-  mainList: '.main',
-  footer: '.footer',
+  classNames = {
+    newTodoInput: 'new-todo',
+    selectedRoute: 'selected',
+  }
 
-  itemCheckBoxByIndex: (index: number) => `[data-test=item-toggle-${index}]`,
-  itemLabelByIndex: (index: number) => `[data-test=item-label-${index}]`,
-  itemDestroyByIndex: (index: number) => `[data-test=item-destroy-${index}]`,
-  itemEditByIndex: (index: number) => `[data-test=item-edit-${index}]`,
+  get app() {
+    return cy.get('.todoapp');
+  }
 
-  todoCount: '.todo-count',
-  clearCompleted: '.clear-completed',
-  todoListItems: '.todo-list label',
+  get newTodoInput() {
+    return cy.get('.' + this.classNames.newTodoInput);
+  }
 
-  all: '[data-test=all]',
-  active: '[data-test=active]',
-  completed: '[data-test=completed]',
-};
+  get main() {
+    return cy.get('.main');
+  }
 
-export const visit = () => {
-  cy.visit('http://localhost:3000');
-};
+  get footer() {
+    return cy.get('.footer');
+  }
 
-export const addTodo = (text: string) => {
-  cy.get(selectors.newTodoInput).type(text).type('{enter}');
-};
-
-export const getAllTodos = () => {
-  return cy.get(selectors.todoListItems)
-    .then($items => {
-      const text: string[] = [];
-      $items.each((_i, item) => {
-        text.push(Cypress.$(item).text());
+  get allTodos() {
+    return cy
+      .get('[data-test^=item-label]')
+      .then($items => {
+        const items: string[] = []
+        $items.each((_i, item) => {
+          const $item = Cypress.$(item);
+          items.push($item.text());
+        });
+        return items;
       });
-      return text;
-    });
-};
+  }
+
+  get toggleAllCheckbox() {
+    return cy.get('.toggle-all');
+  }
+
+  get todoCount() {
+    return cy.get('.todo-count');
+  }
+
+  get clearCompleted() {
+    return cy.get('.clear-completed');
+  }
+
+  get routeAll() {
+    return cy.get('[data-test=all]');
+  }
+
+  get routeActive() {
+    return cy.get('[data-test=active]');
+  }
+
+  get routeCompleted() {
+    return cy.get('[data-test=completed]');
+  }
+
+  addTodo(text: string) {
+    this.newTodoInput.type(text).type('{enter}');
+  }
+
+  itemCheckboxByIndex(index: number) {
+    return cy.get(`[data-test=item-toggle-${index}`);
+  }
+
+  itemLabelByIndex(index: number) {
+    return cy.get(`[data-test=item-label-${index}]`);
+  }
+
+  itemDestroyByIndex(index: number) {
+    return cy.get(`[data-test=item-destroy-${index}`);
+  }
+
+  itemEditByIndex(index: number) {
+    return cy.get(`[data-test=item-edit-${index}]`);
+  }
+}
+
+export const todoPage = new TodoPage();

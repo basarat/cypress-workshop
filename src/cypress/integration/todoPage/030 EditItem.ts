@@ -1,52 +1,51 @@
-import { startServer } from "../../utils/server";
-import * as page from "../../utils/pages/todoPage";
+import { todoPage } from "../../utils/pages/todoPage";
 
 beforeEach(() => {
-  startServer();
-  page.visit();
+  todoPage.clear();
+  todoPage.visit();
 });
 
 describe('Edit item', () => {
   beforeEach(() => {
-    page.addTodo('Hello');
+    todoPage.addTodo('Hello');
   });
   it('Double-clicking the todo label activates editing mode', () => {
-    cy.get(page.selectors.itemLabelByIndex(0)).dblclick();
-    cy.get(page.selectors.itemEditByIndex(0)).should('exist');
+    todoPage.itemLabelByIndex(0).dblclick();
+    todoPage.itemEditByIndex(0).should('exist');
   });
   it('The edit mode should exit on enter, blur and escape', () => {
-    cy.get(page.selectors.itemLabelByIndex(0)).dblclick();
-    cy.get(page.selectors.itemEditByIndex(0)).type('{enter}').should('not.exist');
+    todoPage.itemLabelByIndex(0).dblclick();
+    todoPage.itemEditByIndex(0).type('{enter}').should('not.exist');
 
-    cy.get(page.selectors.itemLabelByIndex(0)).dblclick();
-    cy.get(page.selectors.itemEditByIndex(0)).blur().should('not.exist');
+    todoPage.itemLabelByIndex(0).dblclick();
+    todoPage.itemEditByIndex(0).blur().should('not.exist');
 
-    cy.get(page.selectors.itemLabelByIndex(0)).dblclick();
-    cy.get(page.selectors.itemEditByIndex(0)).type('{esc}').should('not.exist');
+    todoPage.itemLabelByIndex(0).dblclick();
+    todoPage.itemEditByIndex(0).type('{esc}').should('not.exist');
   });
   it('Enter results in a commit', () => {
-    cy.get(page.selectors.itemLabelByIndex(0)).dblclick();
-    cy.get(page.selectors.itemEditByIndex(0)).type(' World{enter}');
-    cy.get(page.selectors.itemLabelByIndex(0)).should('have.text', 'Hello World');
+    todoPage.itemLabelByIndex(0).dblclick();
+    todoPage.itemEditByIndex(0).type(' World{enter}');
+    todoPage.itemLabelByIndex(0).should('have.text', 'Hello World');
   });
   it('Blur results in a commit', () => {
-    cy.get(page.selectors.itemLabelByIndex(0)).dblclick();
-    cy.get(page.selectors.itemEditByIndex(0)).type(' World').blur();
-    cy.get(page.selectors.itemLabelByIndex(0)).should('have.text', 'Hello World');
+    todoPage.itemLabelByIndex(0).dblclick();
+    todoPage.itemEditByIndex(0).type(' World').blur();
+    todoPage.itemLabelByIndex(0).should('have.text', 'Hello World');
   });
   it('The *commit* is done after trim', () => {
-    cy.get(page.selectors.itemLabelByIndex(0)).dblclick();
-    cy.get(page.selectors.itemEditByIndex(0)).type(' World ').blur();
-    cy.get(page.selectors.itemLabelByIndex(0)).should('have.text', 'Hello World');
+    todoPage.itemLabelByIndex(0).dblclick();
+    todoPage.itemEditByIndex(0).type(' World ').blur();
+    todoPage.itemLabelByIndex(0).should('have.text', 'Hello World');
   });
   it('If the trim results in an empty value, the commit should destroy the item', () => {
-    cy.get(page.selectors.itemLabelByIndex(0)).dblclick();
-    cy.get(page.selectors.itemEditByIndex(0)).clear().blur();
-    cy.get(page.selectors.itemLabelByIndex(0)).should('not.exist');
+    todoPage.itemLabelByIndex(0).dblclick();
+    todoPage.itemEditByIndex(0).clear().blur();
+    todoPage.itemLabelByIndex(0).should('not.exist');
   });
   it('Escape does not result in a commit', () => {
-    cy.get(page.selectors.itemLabelByIndex(0)).dblclick();
-    cy.get(page.selectors.itemEditByIndex(0)).type(' World{esc}');
-    cy.get(page.selectors.itemLabelByIndex(0)).should('have.text', 'Hello');
+    todoPage.itemLabelByIndex(0).dblclick();
+    todoPage.itemEditByIndex(0).type(' World{esc}');
+    todoPage.itemLabelByIndex(0).should('have.text', 'Hello');
   });
 });

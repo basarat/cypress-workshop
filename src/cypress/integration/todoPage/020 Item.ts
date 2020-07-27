@@ -1,26 +1,25 @@
-import { startServer } from "../../utils/server";
-import * as page from "../../utils/pages/todoPage";
+import { todoPage } from "../../utils/pages/todoPage";
 
 beforeEach(() => {
-  startServer();
-  page.visit();
+  todoPage.clear();
+  todoPage.visit();
 });
 
 describe('Item', () => {
   it('Starts of unchecked', () => {
-    page.addTodo('Hello World');
-    cy.get(page.selectors.itemCheckBoxByIndex(0)).should('not.be.checked');
+    todoPage.addTodo('Hello World');
+    todoPage.itemCheckboxByIndex(0).should('not.be.checked');
   });
   it('Clicking the checkbox toggles the todo active/complete', () => {
-    page.addTodo('Hello World');
-    cy.get(page.selectors.itemCheckBoxByIndex(0)).click();
-    cy.get(page.selectors.itemCheckBoxByIndex(0)).should('be.checked');
-    cy.get(page.selectors.itemCheckBoxByIndex(0)).click();
-    cy.get(page.selectors.itemCheckBoxByIndex(0)).should('not.be.checked');
+    todoPage.addTodo('Hello World');
+    todoPage.itemCheckboxByIndex(0).click();
+    todoPage.itemCheckboxByIndex(0).should('be.checked');
+    todoPage.itemCheckboxByIndex(0).click();
+    todoPage.itemCheckboxByIndex(0).should('not.be.checked');
   });
   it('Clicking the remove button should remove it item', () => {
-    page.addTodo('Hello world');
-    cy.get(page.selectors.itemDestroyByIndex(0)).invoke('show').click();
+    todoPage.addTodo('Hello World');
+    todoPage.itemDestroyByIndex(0).invoke('show').click();
     cy.get('Hello World').should('not.exist');
   });
 });

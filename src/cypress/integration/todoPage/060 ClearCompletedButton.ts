@@ -1,25 +1,24 @@
-import { startServer } from "../../utils/server";
-import * as page from "../../utils/pages/todoPage";
+import { todoPage } from "../../utils/pages/todoPage";
 
 beforeEach(() => {
-  startServer();
-  page.visit();
+  todoPage.clear();
+  todoPage.visit();
 });
 
 describe('Clear completed button', () => {
   it('Should be hidden when there are no completed todos', () => {
-    page.addTodo('Hello');
-    cy.get(page.selectors.clearCompleted).should('not.exist');
+    todoPage.addTodo('Hello');
+    todoPage.clearCompleted.should('not.exist');
   });
   it('Should be visible when there are completed todos', () => {
-    page.addTodo('Hello');
-    cy.get(page.selectors.itemCheckBoxByIndex(0)).click();
-    cy.get(page.selectors.clearCompleted).should('exist');
+    todoPage.addTodo('Hello');
+    todoPage.itemCheckboxByIndex(0).click();
+    todoPage.clearCompleted.should('exist');
   });
   it('Clicking it removes completed todos', () => {
-    page.addTodo('Hello');
-    cy.get(page.selectors.itemCheckBoxByIndex(0)).click();
-    cy.get(page.selectors.clearCompleted).click();
-    cy.get(page.selectors.itemLabelByIndex(0)).should('not.exist');
+    todoPage.addTodo('Hello');
+    todoPage.itemCheckboxByIndex(0).click();
+    todoPage.clearCompleted.click();
+    todoPage.itemLabelByIndex(0).should('not.exist');
   });
 });
