@@ -67,6 +67,7 @@ class TodoPage {
 
   addTodo(text: string) {
     this.newTodoInput.type(text).type('{enter}');
+    this.newTodoInput.should('have.value', '');
   }
 
   itemCheckboxByIndex(index: number) {
